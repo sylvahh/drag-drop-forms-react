@@ -21,7 +21,7 @@ const FieldRenderer: React.FC<FieldRendererProps> = ({ field }) => {
       case 'text':
       case 'email':
       case 'url':
-      case 'tel':
+      case 'tel': {
         const inputField = field as InputField;
         return (
           <div className="space-y-1">
@@ -34,8 +34,9 @@ const FieldRenderer: React.FC<FieldRendererProps> = ({ field }) => {
             />
           </div>
         );
+      }
       
-      case 'number':
+      case 'number': {
         const numberField = field as InputField;
         return (
           <div className="space-y-1">
@@ -48,8 +49,9 @@ const FieldRenderer: React.FC<FieldRendererProps> = ({ field }) => {
             />
           </div>
         );
+      }
       
-      case 'date':
+      case 'date': {
         const dateField = field as DateField;
         return (
           <div className="space-y-1">
@@ -61,8 +63,9 @@ const FieldRenderer: React.FC<FieldRendererProps> = ({ field }) => {
             />
           </div>
         );
+      }
       
-      case 'radio':
+      case 'radio': {
         const radioField = field as InputField;
         return (
           <div className="space-y-2">
@@ -77,8 +80,9 @@ const FieldRenderer: React.FC<FieldRendererProps> = ({ field }) => {
             </div>
           </div>
         );
+      }
       
-      case 'checkbox':
+      case 'checkbox': {
         const checkboxField = field as InputField;
         return (
           <div className="space-y-2">
@@ -93,8 +97,9 @@ const FieldRenderer: React.FC<FieldRendererProps> = ({ field }) => {
             </div>
           </div>
         );
+      }
       
-      case 'dropdown':
+      case 'dropdown': {
         const selectField = field as SelectField;
         return (
           <div className="space-y-1">
@@ -109,8 +114,9 @@ const FieldRenderer: React.FC<FieldRendererProps> = ({ field }) => {
             </select>
           </div>
         );
+      }
       
-      case 'file':
+      case 'file': {
         const fileField = field as InputField;
         return (
           <div className="space-y-1">
@@ -122,16 +128,19 @@ const FieldRenderer: React.FC<FieldRendererProps> = ({ field }) => {
             />
           </div>
         );
+      }
       
-      case 'header':
+      case 'header': {
         const headerField = field as TextBlockField;
         return <h3 className="text-lg font-semibold">{headerField.text}</h3>;
+      }
       
-      case 'paragraph':
+      case 'paragraph': {
         const paragraphField = field as TextBlockField;
         return <p className="text-sm text-muted-foreground">{paragraphField.text}</p>;
+      }
       
-      case 'info':
+      case 'info': {
         const infoField = field as InfoBlockField;
         const getBgColor = (type: string) => {
           switch (type) {
@@ -149,11 +158,12 @@ const FieldRenderer: React.FC<FieldRendererProps> = ({ field }) => {
             <p className="text-sm">{infoField.content}</p>
           </div>
         );
+      }
       
       default:
         return (
           <div className="p-4 border border-dashed rounded-md text-center text-muted-foreground">
-            Unknown field type: {field.type}
+            Unknown field type: {(field as any).type}
           </div>
         );
     }
