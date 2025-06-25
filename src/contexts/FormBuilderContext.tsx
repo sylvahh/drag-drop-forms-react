@@ -1,6 +1,20 @@
 
 import React, { createContext, useContext, useState, useCallback } from 'react';
-import { Flow, Section, Module, FormBlock, SuperBlock, SuperBlockModule, FieldRow, Field } from '@/types/form';
+import { 
+  Flow, 
+  Section, 
+  Module, 
+  FormBlock, 
+  SuperBlock, 
+  SuperBlockModule, 
+  FieldRow, 
+  Field,
+  InputField,
+  SelectField,
+  DateField,
+  InfoBlockField,
+  TextBlockField
+} from '@/types/form';
 import { v4 as uuidv4 } from 'uuid';
 
 interface FormBuilderContextType {

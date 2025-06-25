@@ -6,7 +6,7 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 import { useFormBuilder } from '@/contexts/FormBuilderContext';
 import FieldsSidebar from '@/components/form-builder/FieldsSidebar';
 import FormCanvas from '@/components/form-builder/FormCanvas';
-import ConfigurationSidebar from '@/components/form-builder/ConfigurationSidebar';
+import ConfigurationDrawer from '@/components/form-builder/ConfigurationDrawer';
 import { Button } from '@/components/ui/button';
 import { Eye, EyeOff, Save } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
@@ -74,10 +74,10 @@ const FormBuilder: React.FC = () => {
         </div>
 
         {/* Main Content */}
-        <div className="flex-1 flex">
+        <div className="flex-1 flex relative">
           {!previewMode && <FieldsSidebar />}
           <FormCanvas />
-          {!previewMode && <ConfigurationSidebar />}
+          <ConfigurationDrawer />
         </div>
       </div>
     </DndProvider>

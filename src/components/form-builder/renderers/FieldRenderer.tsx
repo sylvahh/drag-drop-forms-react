@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Field } from '@/types/form';
+import { Field, InputField, DateField, SelectField, InfoBlockField, TextBlockField } from '@/types/form';
 import { useFormBuilder } from '@/contexts/FormBuilderContext';
 import { Button } from '@/components/ui/button';
 import { Settings } from 'lucide-react';
@@ -22,7 +22,7 @@ const FieldRenderer: React.FC<FieldRendererProps> = ({ field }) => {
       case 'email':
       case 'url':
       case 'tel':
-        const inputField = field as any;
+        const inputField = field as InputField;
         return (
           <div className="space-y-1">
             <label className="text-sm font-medium">{inputField.label}</label>
@@ -36,7 +36,7 @@ const FieldRenderer: React.FC<FieldRendererProps> = ({ field }) => {
         );
       
       case 'number':
-        const numberField = field as any;
+        const numberField = field as InputField;
         return (
           <div className="space-y-1">
             <label className="text-sm font-medium">{numberField.label}</label>
@@ -50,7 +50,7 @@ const FieldRenderer: React.FC<FieldRendererProps> = ({ field }) => {
         );
       
       case 'date':
-        const dateField = field as any;
+        const dateField = field as DateField;
         return (
           <div className="space-y-1">
             <label className="text-sm font-medium">{dateField.label}</label>
@@ -63,7 +63,7 @@ const FieldRenderer: React.FC<FieldRendererProps> = ({ field }) => {
         );
       
       case 'radio':
-        const radioField = field as any;
+        const radioField = field as InputField;
         return (
           <div className="space-y-2">
             <label className="text-sm font-medium">{radioField.label}</label>
@@ -79,7 +79,7 @@ const FieldRenderer: React.FC<FieldRendererProps> = ({ field }) => {
         );
       
       case 'checkbox':
-        const checkboxField = field as any;
+        const checkboxField = field as InputField;
         return (
           <div className="space-y-2">
             <label className="text-sm font-medium">{checkboxField.label}</label>
@@ -95,7 +95,7 @@ const FieldRenderer: React.FC<FieldRendererProps> = ({ field }) => {
         );
       
       case 'dropdown':
-        const dropdownField = field as any;
+        const dropdownField = field as SelectField;
         return (
           <div className="space-y-1">
             <label className="text-sm font-medium">{dropdownField.label}</label>
@@ -111,7 +111,7 @@ const FieldRenderer: React.FC<FieldRendererProps> = ({ field }) => {
         );
       
       case 'file':
-        const fileField = field as any;
+        const fileField = field as InputField;
         return (
           <div className="space-y-1">
             <label className="text-sm font-medium">{fileField.label}</label>
@@ -124,15 +124,15 @@ const FieldRenderer: React.FC<FieldRendererProps> = ({ field }) => {
         );
       
       case 'header':
-        const headerField = field as any;
+        const headerField = field as TextBlockField;
         return <h3 className="text-lg font-semibold">{headerField.text}</h3>;
       
       case 'paragraph':
-        const paragraphField = field as any;
+        const paragraphField = field as TextBlockField;
         return <p className="text-sm text-muted-foreground">{paragraphField.text}</p>;
       
       case 'info':
-        const infoField = field as any;
+        const infoField = field as InfoBlockField;
         const getBgColor = (type: string) => {
           switch (type) {
             case 'warning':
