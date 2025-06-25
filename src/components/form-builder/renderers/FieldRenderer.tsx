@@ -22,13 +22,12 @@ const FieldRenderer: React.FC<FieldRendererProps> = ({ field }) => {
       case 'email':
       case 'url':
       case 'tel':
-        const inputField = field as InputField;
         return (
           <div className="space-y-1">
-            <label className="text-sm font-medium">{inputField.label}</label>
+            <label className="text-sm font-medium">{(field as InputField).label}</label>
             <input
               type={field.type}
-              placeholder={inputField.placeholder}
+              placeholder={(field as InputField).placeholder}
               className="w-full p-2 border rounded-md bg-muted/50"
               disabled
             />
@@ -36,13 +35,12 @@ const FieldRenderer: React.FC<FieldRendererProps> = ({ field }) => {
         );
       
       case 'number':
-        const numberField = field as InputField;
         return (
           <div className="space-y-1">
-            <label className="text-sm font-medium">{numberField.label}</label>
+            <label className="text-sm font-medium">{(field as InputField).label}</label>
             <input
               type="number"
-              placeholder={numberField.placeholder}
+              placeholder={(field as InputField).placeholder}
               className="w-full p-2 border rounded-md bg-muted/50"
               disabled
             />
@@ -50,10 +48,9 @@ const FieldRenderer: React.FC<FieldRendererProps> = ({ field }) => {
         );
       
       case 'date':
-        const dateField = field as DateField;
         return (
           <div className="space-y-1">
-            <label className="text-sm font-medium">{dateField.label}</label>
+            <label className="text-sm font-medium">{(field as DateField).label}</label>
             <input
               type="date"
               className="w-full p-2 border rounded-md bg-muted/50"
@@ -63,12 +60,11 @@ const FieldRenderer: React.FC<FieldRendererProps> = ({ field }) => {
         );
       
       case 'radio':
-        const radioField = field as InputField;
         return (
           <div className="space-y-2">
-            <label className="text-sm font-medium">{radioField.label}</label>
+            <label className="text-sm font-medium">{(field as InputField).label}</label>
             <div className="space-y-1">
-              {radioField.options?.map((option: any) => (
+              {(field as InputField).options?.map((option) => (
                 <div key={option.id} className="flex items-center space-x-2">
                   <input type="radio" disabled />
                   <span className="text-sm">{option.label}</span>
@@ -79,12 +75,11 @@ const FieldRenderer: React.FC<FieldRendererProps> = ({ field }) => {
         );
       
       case 'checkbox':
-        const checkboxField = field as InputField;
         return (
           <div className="space-y-2">
-            <label className="text-sm font-medium">{checkboxField.label}</label>
+            <label className="text-sm font-medium">{(field as InputField).label}</label>
             <div className="space-y-1">
-              {checkboxField.options?.map((option: any) => (
+              {(field as InputField).options?.map((option) => (
                 <div key={option.id} className="flex items-center space-x-2">
                   <input type="checkbox" disabled />
                   <span className="text-sm">{option.label}</span>
@@ -95,13 +90,12 @@ const FieldRenderer: React.FC<FieldRendererProps> = ({ field }) => {
         );
       
       case 'dropdown':
-        const dropdownField = field as SelectField;
         return (
           <div className="space-y-1">
-            <label className="text-sm font-medium">{dropdownField.label}</label>
+            <label className="text-sm font-medium">{(field as SelectField).label}</label>
             <select className="w-full p-2 border rounded-md bg-muted/50" disabled>
-              <option>{dropdownField.placeholder}</option>
-              {dropdownField.options?.map((option: any) => (
+              <option>{(field as SelectField).placeholder}</option>
+              {(field as SelectField).options?.map((option) => (
                 <option key={option.id} value={option.value}>
                   {option.label}
                 </option>
@@ -111,10 +105,9 @@ const FieldRenderer: React.FC<FieldRendererProps> = ({ field }) => {
         );
       
       case 'file':
-        const fileField = field as InputField;
         return (
           <div className="space-y-1">
-            <label className="text-sm font-medium">{fileField.label}</label>
+            <label className="text-sm font-medium">{(field as InputField).label}</label>
             <input
               type="file"
               className="w-full p-2 border rounded-md bg-muted/50"
@@ -124,12 +117,10 @@ const FieldRenderer: React.FC<FieldRendererProps> = ({ field }) => {
         );
       
       case 'header':
-        const headerField = field as TextBlockField;
-        return <h3 className="text-lg font-semibold">{headerField.text}</h3>;
+        return <h3 className="text-lg font-semibold">{(field as TextBlockField).text}</h3>;
       
       case 'paragraph':
-        const paragraphField = field as TextBlockField;
-        return <p className="text-sm text-muted-foreground">{paragraphField.text}</p>;
+        return <p className="text-sm text-muted-foreground">{(field as TextBlockField).text}</p>;
       
       case 'info':
         const infoField = field as InfoBlockField;
