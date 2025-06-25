@@ -4,7 +4,7 @@ import { Module } from '@/types/form';
 import { useFormBuilder } from '@/contexts/FormBuilderContext';
 import { useDrop } from 'react-dnd';
 import { Button } from '@/components/ui/button';
-import { Plus, Settings, ChevronDown, ChevronRight } from 'lucide-react';
+import { Settings, ChevronDown, ChevronRight } from 'lucide-react';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import FormBlockRenderer from './FormBlockRenderer';
 import SuperBlockRenderer from './SuperBlockRenderer';
@@ -19,28 +19,24 @@ const ModuleRenderer: React.FC<ModuleRendererProps> = ({ module }) => {
   const [isOpen, setIsOpen] = React.useState(true);
 
   const [{ isOver }, drop] = useDrop({
-    accept: 'FIELD',
-    drop: (item: { fieldType: string }) => {
-      // Add field row first, then add field to it
-      const newFieldRow = addFieldRow(module.id, 'module');
-      addField(newFieldRow.id, item.fieldType);
+    accept: ['FIELD', 'STRUCTURE'],
+    drop: (item: { fieldType?: string; structureType?: string }) => {
+      if (item.fieldType) {
+        // Add field row first, then add field to it
+        const newFieldRow = addFieldRow(module.id, 'module');
+        addField(newFieldRow.id, item.fieldType);
+      } else if (item.structureType) {
+        if (item.structureType === 'form_block') {
+          addFormBlock(module.id);
+        } else if (item.structureType === 'super_block') {
+          addSuperBlock(module.id);
+        }
+      }
     },
     collect: (monitor) => ({
       isOver: monitor.isOver(),
     }),
   });
-
-  const handleAddFormBlock = () => {
-    addFormBlock(module.id);
-  };
-
-  const handleAddSuperBlock = () => {
-    addSuperBlock(module.id);
-  };
-
-  const handleAddFieldRow = () => {
-    addFieldRow(module.id, 'module');
-  };
 
   const handleConfigureModule = () => {
     setSelectedElement({ ...module, type: 'module' });
@@ -68,20 +64,6 @@ const ModuleRenderer: React.FC<ModuleRendererProps> = ({ module }) => {
             <Button variant="outline" size="sm" onClick={handleConfigureModule}>
               <Settings className="w-4 h-4" />
             </Button>
-            <div className="flex items-center space-x-1">
-              <Button variant="outline" size="sm" onClick={handleAddFormBlock}>
-                <Plus className="w-3 h-3 mr-1" />
-                Form Block
-              </Button>
-              <Button variant="outline" size="sm" onClick={handleAddSuperBlock}>
-                <Plus className="w-3 h-3 mr-1" />
-                Super Block
-              </Button>
-              <Button variant="outline" size="sm" onClick={handleAddFieldRow}>
-                <Plus className="w-3 h-3 mr-1" />
-                Field Row
-              </Button>
-            </div>
           </div>
         </div>
         
@@ -104,7 +86,7 @@ const ModuleRenderer: React.FC<ModuleRendererProps> = ({ module }) => {
             
             {module.field_rows.length === 0 && module.form_blocks.length === 0 && module.super_blocks.length === 0 && (
               <div className="text-center py-6 text-muted-foreground border-2 border-dashed border-border rounded-lg">
-                <p>Drop fields here or add blocks</p>
+                <p>Drag fields or structure blocks here</p>
               </div>
             )}
           </div>

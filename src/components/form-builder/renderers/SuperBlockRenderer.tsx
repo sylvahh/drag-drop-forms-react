@@ -2,8 +2,9 @@
 import React from 'react';
 import { SuperBlock } from '@/types/form';
 import { useFormBuilder } from '@/contexts/FormBuilderContext';
+import { useDrop } from 'react-dnd';
 import { Button } from '@/components/ui/button';
-import { Plus, Settings, ChevronDown, ChevronRight } from 'lucide-react';
+import { Settings, ChevronDown, ChevronRight } from 'lucide-react';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import SuperBlockModuleRenderer from './SuperBlockModuleRenderer';
 
@@ -15,16 +16,29 @@ const SuperBlockRenderer: React.FC<SuperBlockRendererProps> = ({ superBlock }) =
   const { addSuperBlockModule, setSelectedElement } = useFormBuilder();
   const [isOpen, setIsOpen] = React.useState(true);
 
-  const handleAddSuperBlockModule = () => {
-    addSuperBlockModule(superBlock.id);
-  };
+  const [{ isOver }, drop] = useDrop({
+    accept: 'STRUCTURE',
+    drop: (item: { structureType: string }) => {
+      if (item.structureType === 'module') {
+        addSuperBlockModule(superBlock.id);
+      }
+    },
+    collect: (monitor) => ({
+      isOver: monitor.isOver(),
+    }),
+  });
 
   const handleConfigureSuperBlock = () => {
     setSelectedElement({ ...superBlock, type: 'super_block' });
   };
 
   return (
-    <div className="border rounded-lg bg-accent/30 ml-4">
+    <div
+      ref={drop}
+      className={`border rounded-lg bg-accent/30 ml-4 ${
+        isOver ? 'ring-2 ring-primary ring-opacity-50' : ''
+      }`}
+    >
       <Collapsible open={isOpen} onOpenChange={setIsOpen}>
         <div className="flex items-center justify-between p-3 border-b">
           <CollapsibleTrigger className="flex items-center space-x-2 hover:bg-accent hover:text-accent-foreground p-2 rounded">
@@ -44,10 +58,6 @@ const SuperBlockRenderer: React.FC<SuperBlockRendererProps> = ({ superBlock }) =
             <Button variant="outline" size="sm" onClick={handleConfigureSuperBlock}>
               <Settings className="w-3 h-3" />
             </Button>
-            <Button variant="outline" size="sm" onClick={handleAddSuperBlockModule}>
-              <Plus className="w-3 h-3 mr-1" />
-              Module
-            </Button>
           </div>
         </div>
         
@@ -59,7 +69,7 @@ const SuperBlockRenderer: React.FC<SuperBlockRendererProps> = ({ superBlock }) =
             
             {superBlock.super_block_modules.length === 0 && (
               <div className="text-center py-4 text-muted-foreground border-2 border-dashed border-border rounded-lg">
-                <p className="text-sm">Add super block modules</p>
+                <p className="text-sm">Drag a Module here</p>
               </div>
             )}
           </div>

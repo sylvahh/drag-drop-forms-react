@@ -4,7 +4,7 @@ import { SuperBlockModule } from '@/types/form';
 import { useFormBuilder } from '@/contexts/FormBuilderContext';
 import { useDrop } from 'react-dnd';
 import { Button } from '@/components/ui/button';
-import { Plus, Settings, ChevronDown, ChevronRight } from 'lucide-react';
+import { Settings, ChevronDown, ChevronRight } from 'lucide-react';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import FieldRowRenderer from './FieldRowRenderer';
 
@@ -26,10 +26,6 @@ const SuperBlockModuleRenderer: React.FC<SuperBlockModuleRendererProps> = ({ sup
       isOver: monitor.isOver(),
     }),
   });
-
-  const handleAddFieldRow = () => {
-    addFieldRow(superBlockModule.id, 'super_block_module');
-  };
 
   const handleConfigureSuperBlockModule = () => {
     setSelectedElement({ ...superBlockModule, type: 'super_block_module' });
@@ -54,10 +50,6 @@ const SuperBlockModuleRenderer: React.FC<SuperBlockModuleRendererProps> = ({ sup
             <Button variant="outline" size="sm" onClick={handleConfigureSuperBlockModule}>
               <Settings className="w-3 h-3" />
             </Button>
-            <Button variant="outline" size="sm" onClick={handleAddFieldRow}>
-              <Plus className="w-3 h-3 mr-1" />
-              Field Row
-            </Button>
           </div>
         </div>
         
@@ -69,7 +61,7 @@ const SuperBlockModuleRenderer: React.FC<SuperBlockModuleRendererProps> = ({ sup
             
             {superBlockModule.field_rows.length === 0 && (
               <div className="text-center py-4 text-muted-foreground border-2 border-dashed border-border rounded-lg">
-                <p className="text-sm">Drop fields here or add field rows</p>
+                <p className="text-sm">Drag fields here</p>
               </div>
             )}
           </div>

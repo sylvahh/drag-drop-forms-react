@@ -2,6 +2,7 @@
 import React from 'react';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import DraggableFieldItem from './DraggableFieldItem';
+import DraggableStructureItem from './DraggableStructureItem';
 import { FieldType } from '@/types/form';
 import { 
   Type, 
@@ -167,18 +168,13 @@ const FieldsSidebar: React.FC = () => {
             <h3 className="text-sm font-medium text-foreground mb-3">Structure</h3>
             <div className="space-y-2">
               {structuralElements.map((element) => (
-                <div
+                <DraggableStructureItem
                   key={element.type}
-                  className="flex items-start space-x-3 p-3 border rounded-lg cursor-grab hover:bg-accent hover:shadow-sm transition-all"
-                >
-                  <div className="flex-shrink-0 mt-0.5 text-muted-foreground">
-                    {element.icon}
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <p className="text-sm font-medium text-foreground">{element.title}</p>
-                    <p className="text-xs text-muted-foreground mt-1">{element.description}</p>
-                  </div>
-                </div>
+                  structureType={element.type}
+                  title={element.title}
+                  description={element.description}
+                  icon={element.icon}
+                />
               ))}
             </div>
           </div>

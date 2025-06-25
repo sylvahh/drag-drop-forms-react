@@ -2,8 +2,9 @@
 import React from 'react';
 import { Section } from '@/types/form';
 import { useFormBuilder } from '@/contexts/FormBuilderContext';
+import { useDrop } from 'react-dnd';
 import { Button } from '@/components/ui/button';
-import { Plus, Settings, ChevronDown, ChevronRight } from 'lucide-react';
+import { Settings, ChevronDown, ChevronRight } from 'lucide-react';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import ModuleRenderer from './ModuleRenderer';
 
@@ -15,16 +16,29 @@ const SectionRenderer: React.FC<SectionRendererProps> = ({ section }) => {
   const { addModule, setSelectedElement } = useFormBuilder();
   const [isOpen, setIsOpen] = React.useState(true);
 
-  const handleAddModule = () => {
-    addModule(section.id);
-  };
+  const [{ isOver }, drop] = useDrop({
+    accept: 'STRUCTURE',
+    drop: (item: { structureType: string }) => {
+      if (item.structureType === 'module') {
+        addModule(section.id);
+      }
+    },
+    collect: (monitor) => ({
+      isOver: monitor.isOver(),
+    }),
+  });
 
   const handleConfigureSection = () => {
     setSelectedElement({ ...section, type: 'section' });
   };
 
   return (
-    <div className="border rounded-lg bg-card ml-4">
+    <div
+      ref={drop}
+      className={`border rounded-lg bg-card ml-4 ${
+        isOver ? 'ring-2 ring-primary ring-opacity-50' : ''
+      }`}
+    >
       <Collapsible open={isOpen} onOpenChange={setIsOpen}>
         <div className="flex items-center justify-between p-4 border-b">
           <CollapsibleTrigger className="flex items-center space-x-2 hover:bg-accent hover:text-accent-foreground p-2 rounded">
@@ -40,22 +54,14 @@ const SectionRenderer: React.FC<SectionRendererProps> = ({ section }) => {
             <Button variant="outline" size="sm" onClick={handleConfigureSection}>
               <Settings className="w-4 h-4" />
             </Button>
-            <Button variant="outline" size="sm" onClick={handleAddModule}>
-              <Plus className="w-4 h-4 mr-1" />
-              Add Module
-            </Button>
           </div>
         </div>
         
         <CollapsibleContent>
           <div className="p-4 space-y-4">
             {section.modules.length === 0 ? (
-              <div className="text-center py-6 text-muted-foreground">
-                <p>No modules yet. Add your first module.</p>
-                <Button className="mt-2" size="sm" onClick={handleAddModule}>
-                  <Plus className="w-4 h-4 mr-2" />
-                  Add Module
-                </Button>
+              <div className="text-center py-6 text-muted-foreground border-2 border-dashed border-border rounded-lg">
+                <p>Drag a Module here</p>
               </div>
             ) : (
               section.modules.map((module) => (
