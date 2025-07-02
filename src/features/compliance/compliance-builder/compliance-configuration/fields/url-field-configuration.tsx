@@ -147,13 +147,7 @@ export default React.memo(function UrlFieldConfiguration() {
 					onChange={(e) => updateFormData("placeholder", e.target.value)}
 					errorMessage={errors.placeholder}
 				/>
-				<div className="flex items-center gap-2">
-					<Checkbox
-						checked={formData.required}
-						onCheckedChange={(checked) => updateFormData("required", !!checked)}
-					/>
-					<span>Required</span>
-				</div>
+
 				<Textarea
 					name="description"
 					label="Description"
@@ -168,6 +162,13 @@ export default React.memo(function UrlFieldConfiguration() {
 					onChange={(e) => updateFormData("hint_text", e.target.value)}
 					errorMessage={errors.hint_text}
 				/>
+				<div className="flex items-center gap-2">
+					<Checkbox
+						checked={formData.required}
+						onCheckedChange={(checked) => updateFormData("required", !!checked)}
+					/>
+					<span>Required</span>
+				</div>
 			</form>
 			<div className="flex justify-between">
 				<AppButton variant="muted" onClick={handleCancel} className="w-20">
