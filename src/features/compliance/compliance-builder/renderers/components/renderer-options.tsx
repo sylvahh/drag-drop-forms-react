@@ -18,11 +18,11 @@ type OptionsProps = {
 export default function RendererOptions({ scope = "top", ...props }: OptionsProps) {
 	const isTop = scope === "top" || scope === "field";
 	const container = classNames(
-		"flex  absolute top-0 right-0 z-10 border rounded-lg shadow-md transition-opacity duration-300",
+		"flex  absolute z-10 border rounded-lg shadow-md transition-opacity duration-300",
 		{
-			"flex-col top-0 -right-[40px]  bg-white border-black": scope === "side",
-			"flex-row -top-[50px] right-4 bg-neutral-900": scope === "top",
-			"flex-row -top-3 right-0 bg-neutral-900 group-hover:opacity-100 opacity-0": scope === "field",
+			"flex-col !top-0 !-right-[40px]  bg-white border-black": scope === "side",
+			"flex-row !-top-[50px] !right-4 bg-neutral-900": scope === "top",
+			"flex-row !-top-3 !right-0 bg-neutral-900 group-hover:opacity-100 opacity-0": scope === "field",
 		}
 	);
 
