@@ -1,8 +1,170 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here. */
+
+
+@layer components {
+	/* typography */
+	.heading-1 {
+		@apply font-bold !text-h-1 font-manrope;
+	}
+
+	.heading-2 {
+		@apply font-bold !text-h-2 font-manrope;
+	}
+
+	.heading-3 {
+		@apply font-bold !text-h-3 font-manrope;
+	}
+
+	.heading-4 {
+		@apply font-bold !text-h-4 font-manrope;
+	}
+
+	.heading-5 {
+		@apply font-semibold !text-h-5 font-manrope;
+	}
+
+	.heading-6 {
+		@apply font-semibold !text-h-6 font-manrope;
+	}
+
+	.heading-7 {
+		@apply font-semibold !text-h-7 font-manrope;
+	}
+
+	.heading-8 {
+		@apply font-semibold !text-h-8 font-manrope;
+	}
+
+	.body-1 {
+		@apply font-medium !text-b-1 font-manrope;
+	}
+
+	.body-2 {
+		@apply font-medium !text-b-2 font-manrope;
+	}
+
+	.body-3 {
+		@apply font-medium !text-b-3 font-manrope;
+	}
+
+	.body-4 {
+		@apply font-normal !text-b-4 font-manrope;
+	}
+
+	.body-5 {
+		@apply font-normal !text-b-5 font-manrope;
+	}
+
+	/* button */
+	.button {
+		@apply px-3 py-3 font-medium text-center transition-all duration-300 rounded cursor-pointer font-manrope first-letter:uppercase active:opacity-50 hover:lg:opacity-50 disabled:cursor-default disabled:opacity-50 !text-b-3;
+	}
+
+	.button-primary {
+		@apply button bg-primary-300 text-neutral-100;
+	}
+
+	.button-secondary {
+		@apply button bg-secondary-300 text-neutral-100;
+	}
+
+	.button-destructive {
+		@apply button bg-error-500 text-neutral-100;
+	}
+
+	.button-warning {
+		@apply button bg-warning-300 text-neutral-100;
+	}
+
+	.button-success {
+		@apply button bg-success-300 text-neutral-100;
+	}
+
+	.button-black {
+		@apply button bg-[#1A1A1A] text-neutral-100;
+	}
+
+	.button-muted {
+		@apply button bg-neutral-10 text-neutral-900;
+	}
+
+	.button-ghost {
+		@apply bg-transparent button text-neutral-1000;
+	}
+
+	.button-outline {
+		@apply bg-transparent border button text-neutral-1000;
+	}
+}
+
+
+@keyframes shake {
+	10%,
+	90% {
+		transform: translate3d(-1px, 0, 0);
+	}
+
+	20%,
+	80% {
+		transform: translate3d(2px, 0, 0);
+	}
+
+	30%,
+	50%,
+	70% {
+		transform: translate3d(-4px, 0, 0);
+	}
+
+	40%,
+	60% {
+		transform: translate3d(4px, 0, 0);
+	}
+}
+
+.shake-animation {
+	animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+.hide-scrollbar {
+	scrollbar-width: none !important;
+}
+
+.thin-scrollbar::-webkit-scrollbar {
+	width: 3px;
+	height: 3px;
+}
+
+/* width */
+::-webkit-scrollbar {
+	width: 6px;
+	height: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track,
+.thin-scrollbar::-webkit-scrollbar-track {
+	background: none;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb,
+.thin-scrollbar::-webkit-scrollbar-thumb {
+	background: #687489 !important;
+	border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover,
+.thin-scrollbar::-webkit-scrollbar-thumb {
+	background: #555;
+}
+
 
 @layer base {
   :root {

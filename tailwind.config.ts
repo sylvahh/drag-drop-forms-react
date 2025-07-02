@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import animate from "tailwindcss-animate";
 
 export default {
 	darkMode: ["class"],
@@ -12,85 +13,192 @@ export default {
 	theme: {
 		container: {
 			center: true,
-			padding: '2rem',
+			padding: "2rem",
 			screens: {
-				'2xl': '1400px'
-			}
+				"2xl": "1400px",
+			},
 		},
 		extend: {
 			colors: {
-				border: 'hsl(var(--border))',
-				input: 'hsl(var(--input))',
-				ring: 'hsl(var(--ring))',
-				background: 'hsl(var(--background))',
-				foreground: 'hsl(var(--foreground))',
 				primary: {
-					DEFAULT: 'hsl(var(--primary))',
-					foreground: 'hsl(var(--primary-foreground))'
+					10: "#fd4d071a",
+					100: "#fec4ac",
+					200: "#fe885a",
+					300: "#fd4d07",
+					400: "#c83a02",
+					500: "#8e2901",
+					DEFAULT: "hsl(var(--primary))",
+					foreground: "hsl(var(--primary-foreground))",
 				},
 				secondary: {
-					DEFAULT: 'hsl(var(--secondary))',
-					foreground: 'hsl(var(--secondary-foreground))'
+					10: "#0c0b231a",
+					100: "#9ea5d3",
+					200: "#6e77bc",
+					300: "#47529c",
+					400: "#31386b",
+					500: "#1b1f3b",
+					DEFAULT: "hsl(var(--secondary))",
+					foreground: "hsl(var(--secondary-foreground))",
 				},
+				neutral: {
+					10: "#3333331a",
+					100: "#ffffff",
+					200: "#e8e8e8",
+					300: "#d2d2d2",
+					400: "#bbbbbb",
+					500: "#a4a4a4",
+					600: "#8e8e8e",
+					700: "#777777",
+					800: "#606060",
+					900: "#4a4a4a",
+					1000: "#333333",
+				},
+				error: {
+					10: "#200a0a1a",
+					100: "#e9b8b8",
+					200: "#de9494",
+					300: "#d27070",
+					400: "#c74d4d",
+					500: "#af3737",
+					600: "#8b2b2b",
+					700: "#672020",
+					800: "#441515",
+					900: "#200a0a",
+				},
+				warning: {
+					10: "#2515041a",
+					100: "#f6d1aa",
+					200: "#f1ba80",
+					300: "#eda356",
+					400: "#e88d2b",
+					500: "#ce7516",
+					600: "#a45d12",
+					700: "#7a450d",
+					800: "#4f2d09",
+					900: "#251504",
+				},
+				success: {
+					10: "#07260a1a",
+					100: "#b0f1b7",
+					200: "#89e993",
+					300: "#62e26e",
+					400: "#3bdb4a",
+					500: "#24c333",
+					600: "#1d9c29",
+					700: "#15751f",
+					800: "#0e4d14",
+					900: "#07260a",
+				},
+				black: {
+					DEFAULT: "#000000",
+					base: "#1A1A1A",
+				},
+
+				border: "hsl(var(--border))",
+				input: "hsl(var(--input))",
+				ring: "hsl(var(--ring))",
+				background: "hsl(var(--background))",
+				foreground: "hsl(var(--foreground))",
+				// primary: {
+				// 	DEFAULT: "hsl(var(--primary))",
+				// 	foreground: "hsl(var(--primary-foreground))",
+				// },
+				// secondary: {
+				// 	DEFAULT: "hsl(var(--secondary))",
+				// 	foreground: "hsl(var(--secondary-foreground))",
+				// },
 				destructive: {
-					DEFAULT: 'hsl(var(--destructive))',
-					foreground: 'hsl(var(--destructive-foreground))'
+					DEFAULT: "hsl(var(--destructive))",
+					foreground: "hsl(var(--destructive-foreground))",
 				},
 				muted: {
-					DEFAULT: 'hsl(var(--muted))',
-					foreground: 'hsl(var(--muted-foreground))'
+					DEFAULT: "hsl(var(--muted))",
+					foreground: "hsl(var(--muted-foreground))",
 				},
 				accent: {
-					DEFAULT: 'hsl(var(--accent))',
-					foreground: 'hsl(var(--accent-foreground))'
+					DEFAULT: "hsl(var(--accent))",
+					foreground: "hsl(var(--accent-foreground))",
 				},
 				popover: {
-					DEFAULT: 'hsl(var(--popover))',
-					foreground: 'hsl(var(--popover-foreground))'
+					DEFAULT: "hsl(var(--popover))",
+					foreground: "hsl(var(--popover-foreground))",
 				},
 				card: {
-					DEFAULT: 'hsl(var(--card))',
-					foreground: 'hsl(var(--card-foreground))'
+					DEFAULT: "hsl(var(--card))",
+					foreground: "hsl(var(--card-foreground))",
 				},
 				sidebar: {
-					DEFAULT: 'hsl(var(--sidebar-background))',
-					foreground: 'hsl(var(--sidebar-foreground))',
-					primary: 'hsl(var(--sidebar-primary))',
-					'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
-					accent: 'hsl(var(--sidebar-accent))',
-					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
-					border: 'hsl(var(--sidebar-border))',
-					ring: 'hsl(var(--sidebar-ring))'
-				}
+					DEFAULT: "hsl(var(--sidebar-background))",
+					foreground: "hsl(var(--sidebar-foreground))",
+					primary: "hsl(var(--sidebar-primary))",
+					"primary-foreground": "hsl(var(--sidebar-primary-foreground))",
+					accent: "hsl(var(--sidebar-accent))",
+					"accent-foreground": "hsl(var(--sidebar-accent-foreground))",
+					border: "hsl(var(--sidebar-border))",
+					ring: "hsl(var(--sidebar-ring))",
+				},
+			},
+			fontFamily: {
+				manrope: ["Manrope", "sans-serif"],
+			},
+			fontSize: {
+				"h-1": "58px",
+				"h-2": "48px",
+				"h-3": "40px",
+				"h-4": "34px",
+				"h-5": "28px",
+				"h-6": "24px",
+				"h-7": "20px",
+				"h-8": "18px",
+				"b-1": "16px",
+				"b-2": "14px",
+				"b-3": "12px",
+				"b-4": "10px",
+				"b-5": "8px",
+			},
+			lineHeight: {
+				"h-1": "87px",
+				"h-2": "72px",
+				"h-3": "60px",
+				"h-4": "51px",
+				"h-5": "42px",
+				"h-6": "36px",
+				"h-7": "30px",
+				"h-8": "24px",
+				"b-1": "24px",
+				"b-2": "21px",
+				"b-3": "18px",
+				"b-4": "15px",
+				"b-5": "12px",
 			},
 			borderRadius: {
-				lg: 'var(--radius)',
-				md: 'calc(var(--radius) - 2px)',
-				sm: 'calc(var(--radius) - 4px)'
+				lg: "var(--radius)",
+				md: "calc(var(--radius) - 2px)",
+				sm: "calc(var(--radius) - 4px)",
 			},
 			keyframes: {
-				'accordion-down': {
+				"accordion-down": {
 					from: {
-						height: '0'
+						height: "0",
 					},
 					to: {
-						height: 'var(--radix-accordion-content-height)'
-					}
+						height: "var(--radix-accordion-content-height)",
+					},
 				},
-				'accordion-up': {
+				"accordion-up": {
 					from: {
-						height: 'var(--radix-accordion-content-height)'
+						height: "var(--radix-accordion-content-height)",
 					},
 					to: {
-						height: '0'
-					}
-				}
+						height: "0",
+					},
+				},
 			},
 			animation: {
-				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
-			}
-		}
+				"accordion-down": "accordion-down 0.2s ease-out",
+				"accordion-up": "accordion-up 0.2s ease-out",
+			},
+		},
 	},
-	plugins: [require("tailwindcss-animate")],
+	plugins: [animate],
 } satisfies Config;
